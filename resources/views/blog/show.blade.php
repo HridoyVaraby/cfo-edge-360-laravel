@@ -10,26 +10,26 @@
 
 @push('schema')
     <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Article",
-            "headline": "{{ $post->meta_title ?: $post->title }}",
-            "image": "{{ $post->featured_image ? asset('storage/' . $post->featured_image) : asset('banner.webp') }}",
-            "datePublished": "{{ $post->published_at?->toIso8601String() }}",
-            "author": {
-                "@type": "Person",
-                "name": "{{ $post->author?->name ?? 'CFO Edge 360' }}"
-            },
-            "publisher": {
-                "@type": "Organization",
-                "name": "CFO Edge 360",
-                "logo": {
-                    "@type": "ImageObject",
-                    "url": "{{ asset('logo.png') }}"
+            {
+                "@@context": "https://schema.org",
+                "@type": "Article",
+                "headline": "{{ $post->meta_title ?: $post->title }}",
+                "image": "{{ $post->featured_image ? asset('storage/' . $post->featured_image) : asset('banner.webp') }}",
+                "datePublished": "{{ $post->published_at?->toIso8601String() }}",
+                "author": {
+                    "@type": "Person",
+                    "name": "{{ $post->author?->name ?? 'CFO Edge 360' }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "CFO Edge 360",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ asset('logo.png') }}"
+                    }
                 }
             }
-        }
-        </script>
+            </script>
 @endpush
 
 @section('content')

@@ -1,14 +1,14 @@
-@props([
-    'title' => config('app.name', 'CFO Edge 360'),
-    'description' => 'Expert virtual and fractional CFO services. Strategic financial planning, cash flow optimization, investor reporting, and global compliance.',
-    'keywords' => 'CFO services, virtual CFO, fractional CFO, financial consulting, business finance, financial strategy',
-    'image' => asset('banner.webp'),
-    'type' => 'website',
-    'url' => url()->current(),
-    'published_time' => null,
-    'modified_time' => null,
-    'author' => null,
-])
+@php
+    $title = $title ?? config('app.name', 'CFO Edge 360');
+    $description = $description ?? 'Expert virtual and fractional CFO services. Strategic financial planning, cash flow optimization, investor reporting, and global compliance.';
+    $keywords = $keywords ?? 'CFO services, virtual CFO, fractional CFO, financial consulting, business finance, financial strategy';
+    $image = $image ?? asset('banner.webp');
+    $type = $type ?? 'website';
+    $url = $url ?? url()->current();
+    $published_time = $published_time ?? null;
+    $modified_time = $modified_time ?? null;
+    $author = $author ?? null;
+@endphp
 
 <title>{{ $title }}</title>
 <meta name="description" content="{{ $description }}">

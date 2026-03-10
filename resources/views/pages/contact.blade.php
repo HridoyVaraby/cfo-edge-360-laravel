@@ -1,33 +1,33 @@
 @extends('layouts.app')
 
-@section('title', "Let's Build Your Financial Edge - CFO Edge 360")
+@section('title', "Let us Build Your Financial Edge - CFO Edge 360")
 @section('meta_description', 'Contact CFO EDGE360 for strategic financial leadership. Book a free consultation, email us, call us, or chat via WhatsApp. Available globally.')
 
 @section('content')
     @push('schema')
         <script type="application/ld+json">
-                {
-                    "@context": "https://schema.org",
-                    "@type": "AccountingService",
-                    "name": "CFO Edge 360",
-                    "image": "{{ asset('logo.png') }}",
-                    "url": "{{ url('/') }}",
-                    "telephone": "+15055232471",
-                    "email": "reaz@cfoedge360.com",
-                    "address": {
-                        "@type": "PostalAddress",
-                        "streetAddress": "Flat# 5/A, House-20, Road-25, Eastern Housing Pallabi, Mirpur-12",
-                        "addressLocality": "Dhaka",
-                        "postalCode": "1216",
-                        "addressCountry": "BD"
-                    },
-                    "contactPoint": {
-                        "@type": "ContactPoint",
-                        "telephone": "+15055232471",
-                        "contactType": "customer support"
-                    }
-                }
-                </script>
+                                {
+                                    "@@context": "https://schema.org",
+                                    "@type": "AccountingService",
+                                    "name": "CFO Edge 360",
+                                    "image": "{{ asset('logo.png') }}",
+                                    "url": "{{ url('/') }}",
+                                    "telephone": "+15055232471",
+                                    "email": "reaz@cfoedge360.com",
+                                    "address": {
+                                        "@type": "PostalAddress",
+                                        "streetAddress": "Flat# 5/A, House-20, Road-25, Eastern Housing Pallabi, Mirpur-12",
+                                        "addressLocality": "Dhaka",
+                                        "postalCode": "1216",
+                                        "addressCountry": "BD"
+                                    },
+                                    "contactPoint": {
+                                        "@type": "ContactPoint",
+                                        "telephone": "+15055232471",
+                                        "contactType": "customer support"
+                                    }
+                                }
+                                </script>
     @endpush
 
     <div class="min-h-screen bg-gradient-to-br from-gray-50 to-white">
