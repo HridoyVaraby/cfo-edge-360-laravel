@@ -28,6 +28,15 @@ class Post extends Model
         'published_at' => 'datetime',
     ];
 
+    protected static function booted(): void
+    {
+        static::saving(function (Post $post) {
+            if ($post->status === 'published' && empty($post->published_at)) {
+                $post->published_at = now();
+            }
+        });
+    }
+
     public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class);

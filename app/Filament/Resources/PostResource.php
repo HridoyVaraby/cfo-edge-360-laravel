@@ -40,6 +40,10 @@ class PostResource extends Resource
                 Forms\Components\FileUpload::make('featured_image')
                     ->image()
                     ->directory('posts')
+                    ->maxSize(2048) // 2MB max
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/gif'])
+                    ->imageResizeMode('cover')
+                    ->imageCropAspectRatio('16:9')
                     ->columnSpanFull(),
             ])->columns(2),
 

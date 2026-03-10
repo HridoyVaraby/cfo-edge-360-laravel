@@ -56,11 +56,12 @@
 
                                 <h1
                                     class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 font-serif mb-8 leading-tight">
-                                    {{ $post->title }}</h1>
+                                    {{ $post->title }}
+                                </h1>
 
                                 <!-- Content -->
                                 <div class="prose prose-lg max-w-none blog-content text-gray-700">
-                                    {!! $post->content !!}
+                                    {!! \App\Helpers\HtmlSanitizer::clean($post->content) !!}
                                 </div>
 
                                 <!-- Tags -->
