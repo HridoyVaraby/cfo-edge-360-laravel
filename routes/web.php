@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +14,11 @@ Route::get('/cookie-policy', [PageController::class, 'cookiePolicy'])->name('coo
 Route::get('/cancellation-refund-policy', [PageController::class, 'cancellationRefundPolicy'])->name('cancellation-refund-policy');
 Route::get('/terms-conditions', [PageController::class, 'termsConditions'])->name('terms-conditions');
 Route::get('/developer-credit', [PageController::class, 'developerCredit'])->name('developer-credit');
+
+// Contact form submission
+Route::post('/contact', [ContactController::class, 'submit'])
+    ->name('contact.submit')
+    ->middleware('throttle:5,1');
 
 // Blog
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');

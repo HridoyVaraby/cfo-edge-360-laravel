@@ -28,6 +28,10 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->passwordReset()
+            ->brandName('CFO Edge 360')
+            ->brandLogo(asset('logo.png'))
+            ->darkModeBrandLogo(asset('logo_white.png'))
+            ->brandLogoHeight('2.5rem')
             ->colors([
                 'primary' => Color::Amber,
             ])

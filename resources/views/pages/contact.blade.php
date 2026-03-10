@@ -39,7 +39,8 @@
                                 <div class="flex items-start space-x-4">
                                     <div
                                         class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-r from-purple-500 to-purple-600 text-white flex-shrink-0 shadow-lg">
-                                        <i data-lucide="calendar" class="h-6 w-6"></i></div>
+                                        <i data-lucide="calendar" class="h-6 w-6"></i>
+                                    </div>
                                     <div class="flex-1">
                                         <h4 class="text-lg font-semibold text-gray-900 mb-1">Book a Free Consultation</h4>
                                         <p class="text-sm text-gray-600 mb-3">Get personalized financial insights in a
@@ -59,7 +60,8 @@
                                 <div class="flex items-start space-x-4">
                                     <div
                                         class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 text-white flex-shrink-0">
-                                        <i data-lucide="mail" class="h-6 w-6"></i></div>
+                                        <i data-lucide="mail" class="h-6 w-6"></i>
+                                    </div>
                                     <div class="flex-1">
                                         <h4 class="text-lg font-semibold text-gray-900">Email Us</h4>
                                         <a href="mailto:reaz@cfoedge360.com"
@@ -80,7 +82,8 @@
                                 <div class="flex items-start space-x-4">
                                     <div
                                         class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-r from-blue-400 to-blue-500 text-white flex-shrink-0">
-                                        <i data-lucide="phone" class="h-6 w-6"></i></div>
+                                        <i data-lucide="phone" class="h-6 w-6"></i>
+                                    </div>
                                     <div class="flex-1">
                                         <h4 class="text-lg font-semibold text-gray-900">Call Us Directly</h4>
                                         <div class="space-y-1">
@@ -132,7 +135,8 @@
                                 <div class="flex items-start space-x-4">
                                     <div
                                         class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-r from-gray-600 to-gray-700 text-white flex-shrink-0">
-                                        <i data-lucide="map-pin" class="h-6 w-6"></i></div>
+                                        <i data-lucide="map-pin" class="h-6 w-6"></i>
+                                    </div>
                                     <div class="flex-1">
                                         <h4 class="text-lg font-semibold text-gray-900 mb-2">Headquarters</h4>
                                         <address class="text-gray-600 not-italic leading-relaxed">
@@ -157,11 +161,85 @@
                                 <p class="text-gray-600">Have a question or need assistance? Fill out the form below, and
                                     we'll get back to you as soon as possible. Your inquiries are important to us!</p>
                             </div>
-                            <div class="w-full overflow-hidden">
-                                <iframe src="https://cms.cfoedge360.com/form/" class="w-full border-0 rounded-lg"
-                                    style="min-height: 600px; overflow: hidden" title="Contact Form" loading="lazy"
-                                    scrolling="no"></iframe>
-                            </div>
+
+                            {{-- Success Message --}}
+                            @if(session('success'))
+                                <div class="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl" x-data="{ show: true }"
+                                    x-show="show">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center space-x-3">
+                                            <i data-lucide="check-circle" class="h-5 w-5 text-green-600"></i>
+                                            <p class="text-green-800 font-medium">{{ session('success') }}</p>
+                                        </div>
+                                        <button @click="show = false" class="text-green-600 hover:text-green-800">
+                                            <i data-lucide="x" class="h-4 w-4"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            @endif
+
+                            <form method="POST" action="{{ route('contact.submit') }}" class="space-y-5">
+                                @csrf
+
+                                {{-- Honeypot — hidden from humans, catches bots --}}
+                                <div style="position: absolute; left: -9999px;" aria-hidden="true">
+                                    <input type="text" name="honeypot" tabindex="-1" autocomplete="off" value="">
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1.5">Full Name
+                                            <span class="text-red-500">*</span></label>
+                                        <input type="text" name="name" id="name" value="{{ old('name') }}" required
+                                            class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 transition-all duration-200 text-gray-900 placeholder-gray-400 @error('name') border-red-400 @enderror"
+                                            placeholder="Your full name">
+                                        @error('name') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
+                                    </div>
+                                    <div>
+                                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1.5">Email
+                                            Address <span class="text-red-500">*</span></label>
+                                        <input type="email" name="email" id="email" value="{{ old('email') }}" required
+                                            class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 transition-all duration-200 text-gray-900 placeholder-gray-400 @error('email') border-red-400 @enderror"
+                                            placeholder="your@email.com">
+                                        @error('email') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-1.5">Phone
+                                            Number</label>
+                                        <input type="tel" name="phone" id="phone" value="{{ old('phone') }}"
+                                            class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 transition-all duration-200 text-gray-900 placeholder-gray-400"
+                                            placeholder="+1 234 567 8901">
+                                    </div>
+                                    <div>
+                                        <label for="subject"
+                                            class="block text-sm font-medium text-gray-700 mb-1.5">Subject</label>
+                                        <input type="text" name="subject" id="subject" value="{{ old('subject') }}"
+                                            class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 transition-all duration-200 text-gray-900 placeholder-gray-400"
+                                            placeholder="How can we help?">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="message" class="block text-sm font-medium text-gray-700 mb-1.5">Message
+                                        <span class="text-red-500">*</span></label>
+                                    <textarea name="message" id="message" rows="5" required
+                                        class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-amber-400 focus:ring-2 focus:ring-amber-100 transition-all duration-200 text-gray-900 placeholder-gray-400 resize-none @error('message') border-red-400 @enderror"
+                                        placeholder="Tell us about your needs...">{{ old('message') }}</textarea>
+                                    @error('message') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
+                                </div>
+
+                                <button type="submit"
+                                    class="w-full inline-flex items-center justify-center px-6 py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold rounded-xl hover:from-amber-600 hover:to-amber-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 min-h-[48px]">
+                                    <i data-lucide="send" class="h-5 w-5 mr-2"></i>
+                                    Send Message
+                                </button>
+
+                                <p class="text-xs text-gray-500 text-center mt-3">We typically respond within 24 hours. Your
+                                    information is kept confidential.</p>
+                            </form>
                         </div>
 
                         <!-- Business Hours -->
@@ -169,7 +247,8 @@
                             <div class="flex items-start space-x-4">
                                 <div
                                     class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 text-white flex-shrink-0">
-                                    <i data-lucide="clock" class="h-6 w-6"></i></div>
+                                    <i data-lucide="clock" class="h-6 w-6"></i>
+                                </div>
                                 <div class="flex-1">
                                     <h4 class="text-lg font-semibold text-gray-900 mb-2">Business Hours</h4>
                                     <div class="space-y-1 text-sm text-gray-600">
