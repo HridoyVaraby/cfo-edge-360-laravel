@@ -6,23 +6,45 @@
 @section('content')
     <div class="min-h-screen">
 
-        <!-- FAQ Schema for SEO -->
-        @push('head')
+        <!-- Schema for SEO -->
+        @push('schema')
             @verbatim
                 <script type="application/ld+json">
-                        {
-                            "@context": "https://schema.org",
-                            "@type": "FAQPage",
-                            "mainEntity": [
-                                {"@type":"Question","name":"What is a Virtual CFO and how does it differ from a traditional CFO?","acceptedAnswer":{"@type":"Answer","text":"A Virtual CFO provides the same strategic financial expertise as a traditional CFO but on a flexible, part-time basis. This allows growing businesses to access C-level financial guidance without the full-time executive cost, making it perfect for companies that need expert financial leadership but aren't ready for a full-time hire."}},
-                                {"@type":"Question","name":"What size businesses do you typically work with?","acceptedAnswer":{"@type":"Answer","text":"We work with businesses ranging from startups to mid-market companies, typically with revenues between $1M to $50M. Our services are particularly valuable for companies in growth phases, those preparing for fundraising, or businesses expanding internationally that need strategic financial guidance."}},
-                                {"@type":"Question","name":"How quickly can you start working with our business?","acceptedAnswer":{"@type":"Answer","text":"We can typically begin our engagement within 1-2 weeks of our initial consultation. This includes understanding your business needs, setting up necessary access to financial systems, and developing a customized service plan that aligns with your specific goals and timeline."}},
-                                {"@type":"Question","name":"Do you work with businesses in specific industries?","acceptedAnswer":{"@type":"Answer","text":"We have experience across various industries including technology, healthcare, manufacturing, professional services, and e-commerce. Our expertise in financial strategy, compliance, and growth planning translates well across different sectors, allowing us to provide valuable insights regardless of your industry."}},
-                                {"@type":"Question","name":"What financial systems and software do you work with?","acceptedAnswer":{"@type":"Answer","text":"We're proficient with all major accounting and financial systems including QuickBooks, Xero, NetSuite, Sage, and various ERP systems. We also work with financial planning tools, business intelligence platforms, and can help you select and implement the right systems for your business needs."}},
-                                {"@type":"Question","name":"How do you ensure data security and confidentiality?","acceptedAnswer":{"@type":"Answer","text":"We maintain the highest standards of data security and confidentiality. All client information is protected through encrypted communications, secure cloud platforms, and strict confidentiality agreements. We're also experienced with compliance requirements across different industries and jurisdictions."}}
-                            ]
-                        }
-                        </script>
+                            {
+                                "@context": "https://schema.org",
+                                "@type": "WebSite",
+                                "name": "CFO Edge 360",
+                                "url": "https://cfoedge360.com/"
+                            }
+                            </script>
+                <script type="application/ld+json">
+                            {
+                                "@context": "https://schema.org",
+                                "@type": "Organization",
+                                "name": "CFO Edge 360",
+                                "url": "https://cfoedge360.com/",
+                                "logo": "https://cfoedge360.com/logo.png",
+                                "contactPoint": {
+                                    "@type": "ContactPoint",
+                                    "telephone": "+15055232471",
+                                    "contactType": "customer service"
+                                }
+                            }
+                            </script>
+                <script type="application/ld+json">
+                                    {
+                                        "@context": "https://schema.org",
+                                        "@type": "FAQPage",
+                                        "mainEntity": [
+                                            {"@type":"Question","name":"What is a Virtual CFO and how does it differ from a traditional CFO?","acceptedAnswer":{"@type":"Answer","text":"A Virtual CFO provides the same strategic financial expertise as a traditional CFO but on a flexible, part-time basis. This allows growing businesses to access C-level financial guidance without the full-time executive cost, making it perfect for companies that need expert financial leadership but aren't ready for a full-time hire."}},
+                                            {"@type":"Question","name":"What size businesses do you typically work with?","acceptedAnswer":{"@type":"Answer","text":"We work with businesses ranging from startups to mid-market companies, typically with revenues between $1M to $50M. Our services are particularly valuable for companies in growth phases, those preparing for fundraising, or businesses expanding internationally that need strategic financial guidance."}},
+                                            {"@type":"Question","name":"How quickly can you start working with our business?","acceptedAnswer":{"@type":"Answer","text":"We can typically begin our engagement within 1-2 weeks of our initial consultation. This includes understanding your business needs, setting up necessary access to financial systems, and developing a customized service plan that aligns with your specific goals and timeline."}},
+                                            {"@type":"Question","name":"Do you work with businesses in specific industries?","acceptedAnswer":{"@type":"Answer","text":"We have experience across various industries including technology, healthcare, manufacturing, professional services, and e-commerce. Our expertise in financial strategy, compliance, and growth planning translates well across different sectors, allowing us to provide valuable insights regardless of your industry."}},
+                                            {"@type":"Question","name":"What financial systems and software do you work with?","acceptedAnswer":{"@type":"Answer","text":"We're proficient with all major accounting and financial systems including QuickBooks, Xero, NetSuite, Sage, and various ERP systems. We also work with financial planning tools, business intelligence platforms, and can help you select and implement the right systems for your business needs."}},
+                                            {"@type":"Question","name":"How do you ensure data security and confidentiality?","acceptedAnswer":{"@type":"Answer","text":"We maintain the highest standards of data security and confidentiality. All client information is protected through encrypted communications, secure cloud platforms, and strict confidentiality agreements. We're also experienced with compliance requirements across different industries and jurisdictions."}}
+                                        ]
+                                    }
+                                    </script>
             @endverbatim
         @endpush
 

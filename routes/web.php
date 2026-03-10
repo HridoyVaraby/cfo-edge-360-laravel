@@ -25,3 +25,7 @@ Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/post/{slug}', [PostController::class, 'show'])->name('posts.show');
 Route::get('/category/{slug}', [PostController::class, 'category'])->name('posts.category');
 Route::get('/tag/{slug}', [PostController::class, 'tag'])->name('posts.tag');
+
+// SEO
+Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'sitemap'])->name('sitemap');
+Route::get('/robots.txt', [\App\Http\Controllers\SitemapController::class, 'robots'])->name('robots');

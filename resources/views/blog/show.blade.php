@@ -3,12 +3,33 @@
 @section('title', ($post->meta_title ?: $post->title) . ' - CFO Edge 360')
 @section('meta_description', $post->meta_description ?: $post->excerpt)
 
-@push('head')
-    @if($post->featured_image)
-        <meta property="og:image" content="{{ asset('storage/' . $post->featured_image) }}">
-    @endif
-    <meta property="og:type" content="article">
-    <meta property="article:published_time" content="{{ $post->published_at?->toIso8601String() }}">
+@section('meta_image', $post->featured_image ? asset('storage/' . $post->featured_image) : asset('banner.webp'))
+@section('meta_type', 'article')
+@section('published_time', $post->published_at?->toIso8601String())
+@section('meta_author', $post->author?->name)
+
+@push('schema')
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": "{{ $post->meta_title ?: $post->title }}",
+            "image": "{{ $post->featured_image ? asset('storage/' . $post->featured_image) : asset('banner.webp') }}",
+            "datePublished": "{{ $post->published_at?->toIso8601String() }}",
+            "author": {
+                "@type": "Person",
+                "name": "{{ $post->author?->name ?? 'CFO Edge 360' }}"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "CFO Edge 360",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "{{ asset('logo.png') }}"
+                }
+            }
+        }
+        </script>
 @endpush
 
 @section('content')
