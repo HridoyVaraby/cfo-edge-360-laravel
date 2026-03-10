@@ -18,9 +18,25 @@ class SecurityHeaders
         $response->headers->set('Referrer-Policy', 'strict-origin-when-cross-origin');
         $response->headers->set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
 
-        // HSTS — only in production over HTTPS
-        if (app()->environment('production') && $request->isSecure()) {
-            $response->headers->set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+        $csp = [
+            "default-src 'self'",
+            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com",
+            "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+            "font-src 'self' https://fonts.gstatic.com data:",
+            "img-src 'self' data: blob: https:",
+            "connect-src 'self' ws: wss:",
+            "worker-src 'self' blob:",
+            "object-src 'none'",
+            "frame-ancestors 'self'",
+            "base-uri 'self'",
+            "form-action 'self'"
+        ];
+
+        $response->headers->set('Content-Security-Policy', implode('; ', $csp));
+
+        // HSTS - Always set in production, browser ignores over HTTP anyway
+        if (app()->environment('production')) {
+            $response->headers->set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
         }
 
         return $response;
